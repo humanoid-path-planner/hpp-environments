@@ -1,0 +1,51 @@
+<robot name="buggy">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/buggy_rearwheel.dae"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/buggyBB.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_frontright_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="1" lower="-1" upper="1"/>
+    <origin xyz="1.35943 -0.365 0.21227" rpy="0 0 0"/>
+    <!--<origin xyz="1.35943 -0.34162 0.21227" rpy="0 0 0"/>-->
+    <parent link="base_link"/>
+    <child link="wheel_frontright"/>
+  </joint>
+  <joint name="wheel_frontleft_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="1" lower="-1" upper="1"/>
+    <origin xyz="1.35943 0.345 0.21227" rpy="0 0 0"/>
+    <!--<origin xyz="1.35943 0.34162 0.21227" rpy="0 0 0"/>-->
+    <parent link="base_link"/>
+    <child link="wheel_frontleft"/>
+  </joint>
+  <link name="wheel_frontright">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontright.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="wheel_frontleft">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontleft.dae"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
