@@ -39,6 +39,7 @@ class IAThread(Thread):
                 value = random.randint(0, 1)
                 if (value == 0 or gameWidget.lastPath_ == -1):
                     self.ir_.client.problem.clearPathOptimizers()
+                    self.ir_.client.problem.resetRoadmap()
                     self.ir_.client.problem.solve()
                 elif (value == 1):
                     if (gameWidget.lastPath_ == 0):
@@ -241,11 +242,11 @@ class GameWidget(QDockWidget):
     def createWidget(self):
         widget = QWidget()
         layout = QHBoxLayout()
-        button = QPushButton(widget)
-        button.setText("Start !")
-        button.setMaximumWidth(150)
-        button.connect("clicked()", launch)
-        layout.addWidget(button)
+        self.button = QPushButton(widget)
+        self.button.setText("Start !")
+        self.button.setMaximumWidth(150)
+        self.button.connect("clicked()", launch)
+        layout.addWidget(self.button)
         widget.setLayout(layout)
         layout.addWidget(self.ogWidget)
         layout.addWidget(self.igWidget)
@@ -308,6 +309,9 @@ class GameWidget(QDockWidget):
         self.labelIA.setText("IA's time : --:--:--")
         self.labelBest.setText("Your best : --:--:--" )
         self.labelCurrent.setText("Current run : " + self.currentTime.toString("mm:ss:zz"))
+        self.button.disconnect("clicked()", launch)
+        self.button.setText("Stop !")
+        self.button.connect("clicked()", end)
 
     def end(self):
         if (self.iaTime > self.bestTime):
@@ -321,6 +325,9 @@ class GameWidget(QDockWidget):
         updateTimer.stop()
         self.igWidget.setVisible(False)
         self.ogWidget.setVisible(True)
+        self.button.disconnect("clicked()", end)
+        self.button.setText("Start !")
+        self.button.connect("clicked()", launch)
 
 def play():
     gameWidget.update()
@@ -359,6 +366,7 @@ updateTimer = QtCore.QTimer()
 updateTimer.setInterval(16)
 updateTimer.connect("timeout()", play)
 def launch():
+    print("launched")
     t = IAThread(iaRobot)
     updateTimer.setParent(gameWidget)
     updateTimer.start()
