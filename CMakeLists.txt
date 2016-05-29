@@ -38,6 +38,13 @@ SET(URDF_UR_BENCHMARK_FILES
   urdf/ur_benchmark/obstacles.urdf
   urdf/ur_benchmark/table.urdf
   urdf/ur_benchmark/wall.urdf
+  urdf/ur_benchmark/box.urdf
+  urdf/ur_benchmark/pokeball.urdf
+  )
+
+SET(SRDF_UR_BENCHMARK_FILES
+  srdf/ur_benchmark/box.srdf
+  srdf/ur_benchmark/pokeball.srdf
   )
 
 SET(SRDF_FILES
@@ -50,6 +57,9 @@ INSTALL(FILES ${URDF_FILES}
 
 INSTALL(FILES ${URDF_UR_BENCHMARK_FILES}
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf/ur_benchmark)
+
+INSTALL(FILES ${SRDF_UR_BENCHMARK_FILES}
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/ur_benchmark)
 
 INSTALL(FILES ${SRDF_FILES}
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf)

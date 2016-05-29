@@ -1,0 +1,24 @@
+<robot name="pokeball">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.6"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+	       iyy="0.001" iyz="0.0"
+	       izz="0.001" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.025"/>
+        <!--mesh filename="package://hpp_environments/meshes/ur_benchmark/pokeball.dae" scale="0.00025 0.00025 0.00025" /-->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
