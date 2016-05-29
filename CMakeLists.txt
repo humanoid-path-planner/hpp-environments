@@ -39,11 +39,13 @@ SET(URDF_UR_BENCHMARK_FILES
   urdf/ur_benchmark/table.urdf
   urdf/ur_benchmark/wall.urdf
   urdf/ur_benchmark/box.urdf
+  urdf/ur_benchmark/ground.urdf
   urdf/ur_benchmark/pokeball.urdf
   )
 
 SET(SRDF_UR_BENCHMARK_FILES
   srdf/ur_benchmark/box.srdf
+  srdf/ur_benchmark/ground.srdf
   srdf/ur_benchmark/pokeball.srdf
   )
 
