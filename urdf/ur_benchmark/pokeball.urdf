@@ -8,10 +8,9 @@
 	       izz="0.001" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 1.57" />
       <geometry>
-        <sphere radius="0.025"/>
-        <!--mesh filename="package://hpp_environments/meshes/ur_benchmark/pokeball.dae" scale="0.00025 0.00025 0.00025" /-->
+        <mesh filename="package://hpp_environments/meshes/ur_benchmark/pokeball.dae" scale="0.025 0.025 0.025" />
       </geometry>
     </visual>
     <collision>
