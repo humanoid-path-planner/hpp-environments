@@ -15,6 +15,7 @@ lockDisplay = Lock()
 lockProblem = Lock()
 displayed = True
 runTime = 180000
+fps=24
 
 class IAThread(Thread):
     ir_ = None
@@ -25,10 +26,11 @@ class IAThread(Thread):
         self.ir_ = iaRobot
         with lockProblem:
             iaRobot.client.problem.selectProblem("default")
+            iaRobot.client.problem.selectSteeringMethod("ReedsShepp")
             self.initConfig_ = iaRobot.client.robot.getCurrentConfig()
             iaRobot.client.robot.setJointBounds("base_joint_xy", [0, 16, -4, 4])
             iaRobot.client.problem.setInitialConfig(self.initConfig_)
-            iaRobot.client.problem.addGoalConfig([9.0, 0.0, 1.0, 0.0, 0.0, 0.0])
+            iaRobot.client.problem.addGoalConfig([10.0, 0.0, 1.0, 0.0, 0.0, 0.0])
 
     def run(self):
         global displayed
@@ -69,7 +71,7 @@ class Car:
 
 class PlayerCar(Car):
     def __init__(self, playerRobot):
-        self.speed = 0.025
+        self.speed = 1.25
         self.angleWheel = 0.0
         self.angleCar = 0.0
         self.angleCarSave = 0.0
@@ -83,7 +85,7 @@ class PlayerCar(Car):
 
     def move(self, direction):
         newP = self.position[::]
-        speed = self.speed * direction
+        speed = self.speed / fps * direction
         self.angleCarSave = self.angleCar
         self.angleCar += self.angleWheel * speed
         newP[2] = math.cos(self.angleCar)
@@ -134,7 +136,7 @@ class IACar(Car):
     def __init__(self, iaRobot):
         self.maxLength = -1.0
         self.currentLength = 0.0
-        self.speed = 0.025
+        self.speed = 1.25
         self.ir = iaRobot
         self.hasLock = False
 
@@ -163,10 +165,11 @@ class IACar(Car):
                     length = self.maxLength
                     lockDisplay.release()
                     displayed = True
+                    print "AAAAAAAAA"
                 else:
-                    self.currentLength += self.speed
+                    self.currentLength += self.speed / fps
                     length = self.currentLength
-                gameWidget.iaCurrentTime = gameWidget.iaCurrentTime.addMSecs(16)
+                gameWidget.iaCurrentTime = gameWidget.iaCurrentTime.addMSecs(1.0 / fps * 1000)
                 config = self.ir.client.problem.configAtParam(gameWidget.lastPath_, length)
                 self.position = config[::]
                 iv(config)
@@ -182,7 +185,7 @@ class IACar(Car):
             self.ir.client.problem.selectProblem("default")
             self.position = self.ir.client.problem.getInitialConfig()
             self.hasLock = False
-            pv (self.position)
+            iv (self.position)
             lockDisplay.release()
             displayed = True
 
@@ -254,22 +257,22 @@ class GameWidget(QDockWidget):
         self.setFocusPolicy(2)            
 
     def keyPressEvent(self, event):
-        move = True
         if (event.key() == 0x01000012):
+            self.runLaunched = True
             self.player.turn(1)
         elif (event.key() == 0x01000014):
+            self.runLaunched = True
             self.player.turn(0)
         elif (event.key() == 0x01000013):
+            self.runLaunched = True
             self.moveDirection_ = 1
         elif (event.key() == 0x01000015):
+            self.runLaunched = True
             self.moveDirection_ = -1
         elif (event.key() == 0x20):
+            self.runLaunched = False
             self.player.reset()
-            move = False
-        else:
-            move = False
-        if (self.runLaunched == False and move == True):
-            self.runLaunched = True
+            self.currentTime = QtCore.QTimer(0, 0)
 
     def keyReleaseEvent(self, event):
         if (event.key() == 0x01000012 or event.key() == 0x01000014):
@@ -280,7 +283,7 @@ class GameWidget(QDockWidget):
     def update(self):
         self.player.update(self.moveDirection_)
         self.ia.update(0)
-        self.remainTime = self.remainTime.addMSecs(-16)
+        self.remainTime = self.remainTime.addMSecs(-1.0/fps*1000)
         self.labelRemain.setText("Time remain : " + self.remainTime.toString("mm:ss"))
         if (self.player.check([9.0, 9.0], [-4, 4])):
             self.runLaunched = False
@@ -290,13 +293,17 @@ class GameWidget(QDockWidget):
             self.currentTime = QtCore.QTime(0, 0)
             self.player.reset()
         if (displayed == False and self.ia.check([9.0, 9.0], [-4, 4])):
+            print self.iaCurrentTime
+            print self.iaTime
+            print self.iaCurrentTime < self.iaTime
+            print ""
             if (self.iaCurrentTime < self.iaTime):
                 self.iaTime = self.iaCurrentTime.addMSecs(0)
                 self.labelIA.setText("IA's time : " + self.iaTime.toString("mm:ss:zz"))
             self.iaCurrentTime = QtCore.QTime(0, 0)
             self.ia.reset()
         if (self.runLaunched):
-            self.currentTime = self.currentTime.addMSecs(16)            
+            self.currentTime = self.currentTime.addMSecs(1.0/fps*1000)            
             self.labelCurrent.setText("Current run : " + self.currentTime.toString("mm:ss:zz"))
 
     def start(self):
@@ -363,7 +370,7 @@ gameTimer = QtCore.QTimer()
 gameTimer.setInterval(runTime)
 gameTimer.connect("timeout()", end)
 updateTimer = QtCore.QTimer()
-updateTimer.setInterval(16)
+updateTimer.setInterval(1.0/fps*1000)
 updateTimer.connect("timeout()", play)
 def launch():
     print("launched")
