@@ -1,0 +1,60 @@
+<robot name="placard">
+  <link name="placard">
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="1"/>
+    </inertial>
+    <visual>
+      <geometry>
+	<cylinder length="1.4" radius="0.015" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+	<cylinder length="1.4" radius="0.015" />
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+	<box size="0.01 0.4 0.3" />
+      </geometry>
+      <origin xyz="0.03 0.0 0.55" />
+      <material name="red">
+	<color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  <link name="base_link">
+  </link>
+  <link name="ltx">
+  </link>
+  <link name="lty">
+  </link>
+  <link name="ltz">
+  </link>
+  <joint name="tx" type="prismatic">
+    <limit effort="10" velocity="1" lower="-1" upper="1"/>
+    <axis xyz="1 0 0"/>
+    <parent link="base_link"/>
+    <child link="ltx"/>
+  </joint>
+  <joint name="ty" type="prismatic">
+    <limit effort="10" velocity="1" lower="-1" upper="1"/>
+    <axis xyz="0 1 0"/>
+    <parent link="ltx"/>
+    <child link="lty"/>
+  </joint>
+  <joint name="tz" type="prismatic">
+    <limit effort="10" velocity="1" lower="0" upper="2"/>
+    <axis xyz="0 0 1"/>
+    <parent link="lty"/>
+    <child link="ltz"/>
+  </joint>
+  <joint name="rz" type="revolute">
+    <limit effort="10" velocity="1" lower="-1" upper="4"/>
+    <axis xyz="0 0 1"/>
+    <parent link="ltz"/>
+    <child link="placard"/>
+  </joint>
+</robot>

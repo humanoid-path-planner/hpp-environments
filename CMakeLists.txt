@@ -32,6 +32,7 @@ catkin_package()
 SET(URDF_FILES
   urdf/buggy.urdf
   urdf/placard.urdf
+  urdf/placard-vertical.urdf
   urdf/scene.urdf
 )
 SET(URDF_UR_BENCHMARK_FILES
