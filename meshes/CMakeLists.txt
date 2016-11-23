@@ -31,6 +31,9 @@ SET (UR_BENCHMARK_MESHES
   ur_benchmark/pokeball.dae
   )
 
+INSTALL(FILES ${UR_BENCHMARK_MESHES}
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/ur_benchmark)
+
 SET (HRP2_MESHES
   hrp2/floor.dae
   )
