@@ -29,87 +29,18 @@ FINDPYTHON(2.7 EXACT REQUIRED)
 FIND_PACKAGE(catkin REQUIRED)
 catkin_package()
 
-SET(URDF_FILES
-  urdf/buggy.urdf
-  urdf/placard.urdf
-  urdf/placard-vertical.urdf
-  urdf/scene.urdf
-  urdf/beam.urdf
-  urdf/beam_support.urdf
-)
-SET(URDF_UR_BENCHMARK_FILES
-  urdf/ur_benchmark/obstacle_sphere.urdf
-  urdf/ur_benchmark/obstacles.urdf
-  urdf/ur_benchmark/table.urdf
-  urdf/ur_benchmark/wall.urdf
-  urdf/ur_benchmark/box.urdf
-  urdf/ur_benchmark/ground.urdf
-  urdf/ur_benchmark/pokeball.urdf
-  )
-
-SET(SRDF_UR_BENCHMARK_FILES
-  srdf/ur_benchmark/box.srdf
-  srdf/ur_benchmark/ground.srdf
-  srdf/ur_benchmark/pokeball.srdf
-  )
-
-SET(URDF_CONSTRUCTION_SET_FILES
-  urdf/construction_set/cylinder_08.urdf
-  urdf/construction_set/cylinder_13.urdf
-  urdf/construction_set/ground.urdf
-  urdf/construction_set/sphere.urdf
-  )
-
-SET(SRDF_CONSTRUCTION_SET_FILES
-  srdf/construction_set/cylinder_08.srdf
-  srdf/construction_set/cylinder_13.srdf
-  srdf/construction_set/ground.srdf
-  srdf/construction_set/sphere.srdf
-  )
-
-SET(SRDF_FILES
-    srdf/buggy.srdf
-    srdf/placard.srdf
-    srdf/scene.srdf
-    srdf/beam.srdf
-    srdf/beam_support.srdf
-  )
-
-SET(URDF_HRP2_FILES
-  urdf/hrp2/floor_as_mesh.urdf
-  )
-
-SET(SRDF_HRP2_FILES
-  srdf/hrp2/floor_as_mesh.srdf
-  )
-
 SET(TEXTURE_FILES
   texture/logo_romeo.jpg
 )
 
-INSTALL(FILES ${URDF_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf)
+INSTALL(DIRECTORY urdf
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-INSTALL(FILES ${URDF_UR_BENCHMARK_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf/ur_benchmark)
+INSTALL(DIRECTORY srdf
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-INSTALL(FILES ${SRDF_UR_BENCHMARK_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/ur_benchmark)
-
-INSTALL(FILES ${URDF_CONSTRUCTION_SET_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf/construction_set)
-
-INSTALL(FILES ${SRDF_CONSTRUCTION_SET_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/construction_set)
-
-INSTALL(FILES ${SRDF_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf)
-
-INSTALL(FILES ${URDF_HRP2_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf/hrp2)
-
-INSTALL(FILES ${SRDF_HRP2_FILES}
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/hrp2)
+INSTALL(DIRECTORY meshes
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 INSTALL(FILES ${TEXTURE_FILES}
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/texture
@@ -118,7 +49,6 @@ INSTALL(FILES ${TEXTURE_FILES}
 INSTALL(FILES package.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-ADD_SUBDIRECTORY(meshes)
 ADD_SUBDIRECTORY(src)
 
 SETUP_PROJECT_FINALIZE()
