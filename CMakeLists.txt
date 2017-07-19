@@ -51,6 +51,16 @@ SET(SRDF_UR_BENCHMARK_FILES
   srdf/ur_benchmark/pokeball.srdf
   )
 
+SET(URDF_CONSTRUCTION_SET_FILES
+  urdf/construction_set/ground.urdf
+  urdf/construction_set/sphere.urdf
+  )
+
+SET(SRDF_CONSTRUCTION_SET_FILES
+  srdf/construction_set/ground.srdf
+  srdf/construction_set/sphere.srdf
+  )
+
 SET(SRDF_FILES
     srdf/buggy.srdf
     srdf/placard.srdf
@@ -77,6 +87,12 @@ INSTALL(FILES ${URDF_UR_BENCHMARK_FILES}
 
 INSTALL(FILES ${SRDF_UR_BENCHMARK_FILES}
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/ur_benchmark)
+
+INSTALL(FILES ${URDF_CONSTRUCTION_SET_FILES}
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf/construction_set)
+
+INSTALL(FILES ${SRDF_CONSTRUCTION_SET_FILES}
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf/construction_set)
 
 INSTALL(FILES ${SRDF_FILES}
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/srdf)
