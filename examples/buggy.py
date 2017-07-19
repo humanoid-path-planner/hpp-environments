@@ -1,7 +1,9 @@
 from hpp.environments import Buggy
+from hpp.gepetto import PathPlayer
 
 robot = Buggy("buggy")
-robot.setJointBounds ("base_joint_xy", [-5, 16, -4.5, 4.5])
+robot.setJointBounds ("root_joint", [-5, 16, -4.5, 4.5,
+                                     -1.01, 1.01, -1.01, 1.01])
 
 from hpp.corbaserver import ProblemSolver
 ps = ProblemSolver (robot)
