@@ -2,6 +2,7 @@
 <robot name="sphere">
   <handle name="handle" clearance="0.025">
     <position> 0 0 0 0.7071067811865476 0 0.7071067811865476 0 </position>
+    <mask> true true true false false false </mask>
     <link name="base_link"/>
   </handle>
 </robot>
