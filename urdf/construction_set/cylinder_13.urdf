@@ -1,4 +1,4 @@
-<robot name="cylinder">
+<robot name="cylinder_13">
   <link name="base_link">
     <inertial>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
@@ -10,13 +10,13 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-	<cylinder radius="0.005" length="0.08"/>
+	<cylinder radius="0.01" length="0.12970562748477143"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-	<box size="0.08 0.01 0.01"/>
+	<box size="0.12970562748477143 0.01 0.01"/>
       </geometry>
     </collision>
   </link>

@@ -52,11 +52,15 @@ SET(SRDF_UR_BENCHMARK_FILES
   )
 
 SET(URDF_CONSTRUCTION_SET_FILES
+  urdf/construction_set/cylinder_08.urdf
+  urdf/construction_set/cylinder_13.urdf
   urdf/construction_set/ground.urdf
   urdf/construction_set/sphere.urdf
   )
 
 SET(SRDF_CONSTRUCTION_SET_FILES
+  srdf/construction_set/cylinder_08.srdf
+  srdf/construction_set/cylinder_13.srdf
   srdf/construction_set/ground.srdf
   srdf/construction_set/sphere.srdf
   )
