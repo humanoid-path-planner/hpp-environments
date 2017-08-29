@@ -1,0 +1,10 @@
+<robot name="beam">
+  <handle name="side0" clearance="0.025">
+    <position>  0.675 0 0 0 0 0 1 </position>
+    <link name="beam"/>
+  </handle>
+  <handle name="side1" clearance="0.025">
+    <position> -0.675 0 0 1 0 0 0 </position>
+    <link name="beam"/>
+  </handle>
+</robot>

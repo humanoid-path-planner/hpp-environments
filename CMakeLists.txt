@@ -34,6 +34,7 @@ SET(URDF_FILES
   urdf/placard.urdf
   urdf/placard-vertical.urdf
   urdf/scene.urdf
+  urdf/beam.urdf
 )
 SET(URDF_UR_BENCHMARK_FILES
   urdf/ur_benchmark/obstacle_sphere.urdf
@@ -69,6 +70,7 @@ SET(SRDF_FILES
     srdf/buggy.srdf
     srdf/placard.srdf
     srdf/scene.srdf
+    srdf/beam.srdf
   )
 
 SET(URDF_HRP2_FILES
