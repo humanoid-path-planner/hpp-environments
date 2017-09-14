@@ -1,0 +1,22 @@
+<robot name="beam_support">
+  <link name="beam_support">
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="1"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.2" />
+      </geometry>
+      <material name="blue">
+        <color rgba="0.11 0.42 0.56 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 0.2" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

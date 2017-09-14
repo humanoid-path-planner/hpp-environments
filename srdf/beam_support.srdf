@@ -1,0 +1,6 @@
+<robot name="beam_support">
+  <gripper name="support" clearance="0.005">
+    <position> 0 0 0.1 -0.70710678119 0 0.70710678119 0 </position>
+    <link name="beam_support"/>
+  </gripper>
+</robot>
