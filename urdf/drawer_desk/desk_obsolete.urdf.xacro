@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+
+<robot name="desk" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<material name="dark_gray">
+		<color rgba="0.3 0.3 0.3 1"/>
+	</material>
+	<material name="light_gray">
+		<color rgba="0.6 0.6 0.6 1"/>
+	</material>
+	<material name="marine">
+		<color rgba="0 0.1 0.2 1"/>
+	</material>
+	<material name="light_turquoise">
+		<color rgba="0 0.6 0.6 1"/>
+	</material>
+	<material name="light_purple">
+		<color rgba="0.3 0.3 0.6 1"/>
+	</material>
+
+	<xacro:property name="scene_orientation" value="0 0 0"/> <!-- Must not be modified -->
+
+	<!-- ***************************************************** -->
+	<!-- ******************** Build table ******************** -->
+	<!-- ***************************************************** -->
+
+	<!-- xacro properties -->
+
+	<xacro:property name="board_posX" value="0"/>
+	<xacro:property name="board_posY" value="0"/>
+	<xacro:property name="board_posZ" value="0.6"/>
+
+	<xacro:property name="board_sizeX" value="2.5"/>
+	<xacro:property name="board_sizeY" value="1.2"/>
+	<xacro:property name="board_sizeZ" value="0.05"/>
+
+	<xacro:property name="leg_foot_sizeX" value="0.05"/>
+	<xacro:property name="leg_foot_sizeY" value="${board_sizeY}"/>
+	<xacro:property name="leg_foot_sizeZ" value="0.025"/>
+	<xacro:property name="leg_foot_size" value="${leg_foot_sizeX} ${leg_foot_sizeY} ${leg_foot_sizeZ}"/>
+
+	<xacro:property name="leg_body_length" value="${board_posZ - leg_foot_sizeZ - (board_sizeZ/2)}"/>
+	<xacro:property name="leg_body_radius" value="${leg_foot_sizeX/2}"/>
+
+	<xacro:property name="board_size" value="${board_sizeX} ${board_sizeY} ${board_sizeZ}"/>
+	<xacro:property name="board_position" value="${board_posX} ${board_posY} ${board_posZ}"/>
+
+	<xacro:property name="rleg_posX" value="${board_posX + ((board_sizeX/2) - leg_body_radius)}"/>
+	<xacro:property name="rleg_posY" value="${board_posY}"/>
+	<xacro:property name="rleg_body_position" value="${rleg_posX} ${rleg_posY} ${(leg_body_length/2)+leg_foot_sizeZ}"/>
+	<xacro:property name="rleg_foot_position" value="${rleg_posX} ${rleg_posY} ${leg_foot_sizeZ/2}"/>
+
+	<xacro:property name="lleg_posX" value="${board_posX - ((board_sizeX/2) - leg_body_radius)}"/>
+	<xacro:property name="lleg_posY" value="${board_posY}"/>
+	<xacro:property name="lleg_body_position" value="${lleg_posX} ${lleg_posY} ${(leg_body_length/2)+leg_foot_sizeZ}"/>
+	<xacro:property name="lleg_foot_position" value="${lleg_posX} ${lleg_posY} ${leg_foot_sizeZ/2}"/>
+
+	<!-- Board -->
+	<link name="board">
+		<visual>
+			<geometry>
+				<box size="${board_size}"/>
+			</geometry>
+			<material name="dark_gray"/>
+			<origin xyz="${board_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${board_size}"/>
+			</geometry>
+			<origin xyz="${board_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<!-- Right table leg -->
+	<link name="rleg_body">
+		<visual>
+			<geometry>
+				<cylinder length="${leg_body_length}" radius="${leg_body_radius}"/>
+			</geometry>
+			<material name="light_gray"/>
+			<origin xyz="${rleg_body_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder length="${leg_body_length}" radius="${leg_body_radius}"/>
+			</geometry>
+			<origin xyz="${rleg_body_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<link name="rleg_foot">
+		<visual>
+			<geometry>
+				<box size="${leg_foot_size}"/>
+			</geometry>
+			<material name="light_gray"/>
+			<origin xyz="${rleg_foot_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${leg_foot_size}"/>
+			</geometry>
+			<origin xyz="${rleg_foot_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="rleg_board_body_joint" type="fixed">
+		<parent link="board"/>
+		<child link="rleg_body"/>
+	</joint>
+
+	<joint name="rleg_body_foot_joint" type="fixed">
+		<parent link="rleg_body"/>
+		<child link="rleg_foot"/>
+	</joint>
+
+	<!-- Left table leg -->
+	<link name="lleg_body">
+		<visual>
+			<geometry>
+				<cylinder length="${leg_body_length}" radius="${leg_body_radius}"/>
+			</geometry>
+			<material name="light_gray"/>
+			<origin xyz="${lleg_body_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder length="${leg_body_length}" radius="${leg_body_radius}"/>
+			</geometry>
+			<origin xyz="${lleg_body_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<link name="lleg_foot">
+		<visual>
+			<geometry>
+				<box size="${leg_foot_size}"/>
+			</geometry>
+			<material name="light_gray"/>
+			<origin xyz="${lleg_foot_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${leg_foot_size}"/>
+			</geometry>
+			<origin xyz="${lleg_foot_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="lleg_board_body_joint" type="fixed">
+		<parent link="board"/>
+		<child link="lleg_body"/>
+	</joint>
+
+	<joint name="lleg_body_foot_joint" type="fixed">
+		<parent link="lleg_body"/>
+		<child link="lleg_foot"/>
+	</joint>
+
+	<!-- **************************************************** -->
+	<!-- ******************** Build case ******************** -->
+	<!-- **************************************************** -->
+
+	<!-- xacro properties -->
+	<xacro:property name="planks_thickness" value="0.025"/>
+
+	<xacro:property name="background_plank_sizeX" value="${board_sizeX/3}"/>
+	<xacro:property name="background_plank_sizeY" value="${planks_thickness}"/>
+	<xacro:property name="background_plank_sizeZ" value="${board_posZ/3}"/>
+	<xacro:property name="background_plank_size" value="${background_plank_sizeX} ${background_plank_sizeY} ${background_plank_sizeZ}"/>
+	<xacro:property name="background_plank_posX" value="${board_posX + (board_sizeX/2) - (background_plank_sizeX/2) - (leg_body_radius*2)}"/>
+	<xacro:property name="background_plank_posY" value="${board_posY + (background_plank_sizeY/2)}"/>
+	<xacro:property name="background_plank_posZ" value="${board_posZ - (board_sizeZ/2) - (background_plank_sizeZ/2)}"/>
+	<xacro:property name="background_plank_position" value="${background_plank_posX} ${background_plank_posY} ${background_plank_posZ}"/>
+
+	<xacro:property name="bottom_plank_sizeX" value="${background_plank_sizeX}"/>
+	<xacro:property name="bottom_plank_sizeY" value="${(board_sizeY/2) + background_plank_sizeY}"/>
+	<xacro:property name="bottom_plank_sizeZ" value="${planks_thickness}"/>
+	<xacro:property name="bottom_plank_size" value="${bottom_plank_sizeX} ${bottom_plank_sizeY} ${bottom_plank_sizeZ}"/>
+	<xacro:property name="bottom_plank_posX" value="${background_plank_posX}"/>
+	<xacro:property name="bottom_plank_posY" value="${background_plank_posY + (background_plank_sizeY/2) - (bottom_plank_sizeY/2)}"/>
+	<xacro:property name="bottom_plank_posZ" value="${background_plank_posZ - (background_plank_sizeZ/2) - (bottom_plank_sizeZ/2)}"/>
+	<xacro:property name="bottom_plank_position" value="${bottom_plank_posX} ${bottom_plank_posY} ${bottom_plank_posZ}"/>
+	
+	<xacro:property name="side_planks_sizeX" value="${planks_thickness}"/>
+	<xacro:property name="side_planks_sizeY" value="${bottom_plank_sizeY - background_plank_sizeY}"/>
+	<xacro:property name="side_planks_sizeZ" value="${background_plank_sizeZ}"/>
+	<xacro:property name="side_planks_size" value="${side_planks_sizeX} ${side_planks_sizeY} ${side_planks_sizeZ}"/>
+
+	<xacro:property name="rside_plank_posX" value="${bottom_plank_posX + (bottom_plank_sizeX/2) - (side_planks_sizeX/2)}"/>
+	<xacro:property name="rside_plank_posY" value="${background_plank_posY - (background_plank_sizeY/2) - (side_planks_sizeY/2)}"/>
+	<xacro:property name="rside_plank_posZ" value="${bottom_plank_posZ + (bottom_plank_sizeZ/2) + (side_planks_sizeZ/2)}"/>
+	<xacro:property name="rside_plank_position" value="${rside_plank_posX} ${rside_plank_posY} ${rside_plank_posZ}"/>
+	<xacro:property name="lside_plank_posX" value="${bottom_plank_posX - (bottom_plank_sizeX/2) + (side_planks_sizeX/2)}"/>
+	<xacro:property name="lside_plank_posY" value="${background_plank_posY - (background_plank_sizeY/2) - (side_planks_sizeY/2)}"/>
+	<xacro:property name="lside_plank_posZ" value="${bottom_plank_posZ + (bottom_plank_sizeZ/2) + (side_planks_sizeZ/2)}"/>
+	<xacro:property name="lside_plank_position" value="${lside_plank_posX} ${lside_plank_posY} ${lside_plank_posZ}"/>
+
+	<!-- Background plank -->
+	<link name="background_plank">
+		<visual>
+			<geometry>
+				<box size="${background_plank_size}"/>
+			</geometry>
+			<material name="marine"/>
+			<origin xyz="${background_plank_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${background_plank_size}"/>
+			</geometry>
+			<origin xyz="${background_plank_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="case_board_background_plank_joint" type="fixed">
+		<parent link="board"/>
+		<child link="background_plank"/>
+	</joint>
+
+	<!-- Bottom plank -->
+	<link name="bottom_plank">
+		<visual>
+			<geometry>
+				<box size="${bottom_plank_size}"/>
+			</geometry>
+			<material name="marine"/>
+			<origin xyz="${bottom_plank_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${bottom_plank_size}"/>
+			</geometry>
+			<origin xyz="${bottom_plank_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="case_background_bottom_joint" type="fixed">
+		<parent link="background_plank"/>
+		<child link="bottom_plank"/>
+	</joint>
+
+	<!-- Right side plank -->
+	<link name="right_side_plank">
+		<visual>
+			<geometry>
+				<box size="${side_planks_size}"/>
+			</geometry>
+			<material name="marine"/>
+			<origin xyz="${rside_plank_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${side_planks_size}"/>
+			</geometry>
+			<origin xyz="${rside_plank_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="case_bottom_right_side_joint" type="fixed">
+		<parent link="bottom_plank"/>
+		<child link="right_side_plank"/>
+	</joint>
+
+	<!-- Left side plank -->
+	<link name="left_side_plank">
+		<visual>
+			<geometry>
+				<box size="${side_planks_size}"/>
+			</geometry>
+			<material name="marine"/>
+			<origin xyz="${lside_plank_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${side_planks_size}"/>
+			</geometry>
+			<origin xyz="${lside_plank_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="case_bottom_left_side_joint" type="fixed">
+		<parent link="bottom_plank"/>
+		<child link="left_side_plank"/>
+	</joint>
+
+	<!-- ****************************************************** -->
+	<!-- ******************** Build drawer ******************** -->
+	<!-- ****************************************************** -->
+
+	<!-- xacro properties -->
+	<xacro:property name="drawer_bottom_sizeX" value="${bottom_plank_sizeX - (2*side_planks_sizeX)}"/>
+	<xacro:property name="drawer_bottom_sizeY" value="${bottom_plank_sizeY - background_plank_sizeY}"/>
+	<xacro:property name="drawer_bottom_sizeZ" value="${planks_thickness}"/>
+	<xacro:property name="drawer_bottom_size" value="${drawer_bottom_sizeX} ${drawer_bottom_sizeY} ${drawer_bottom_sizeZ}"/>
+	<xacro:property name="drawer_bottom_posX" value="${bottom_plank_posX}"/>
+	<xacro:property name="drawer_bottom_posY" value="${bottom_plank_posY - (background_plank_sizeY/2)}"/>
+	<xacro:property name="drawer_bottom_posZ" value="${bottom_plank_posZ + planks_thickness}"/>
+	<xacro:property name="drawer_bottom_position" value="${drawer_bottom_posX} ${drawer_bottom_posY} ${drawer_bottom_posZ}"/>
+
+	<xacro:property name="drawer_back_sizeX" value="${drawer_bottom_sizeX}"/>
+	<xacro:property name="drawer_back_sizeY" value="${planks_thickness}"/>
+	<xacro:property name="drawer_back_sizeZ" value="${background_plank_sizeZ - drawer_bottom_sizeZ}"/>
+	<xacro:property name="drawer_back_size" value="${drawer_back_sizeX} ${drawer_back_sizeY} ${drawer_back_sizeZ}"/>
+
+	<xacro:property name="drawer_front_sizeX" value="${background_plank_sizeX}"/>
+	<xacro:property name="drawer_front_sizeY" value="${planks_thickness}"/>
+	<xacro:property name="drawer_front_sizeZ" value="${background_plank_sizeZ + bottom_plank_sizeZ}"/>
+	<xacro:property name="drawer_front_size" value="${drawer_front_sizeX} ${drawer_front_sizeY} ${drawer_front_sizeZ}"/>
+
+	<xacro:property name="drawer_right_left_sizeX" value="${planks_thickness}"/>
+	<xacro:property name="drawer_right_left_sizeY" value="${side_planks_sizeY - drawer_back_sizeY}"/>
+	<xacro:property name="drawer_right_left_sizeZ" value="${drawer_back_sizeZ}"/>
+	<xacro:property name="drawer_right_left_size" value="${drawer_right_left_sizeX} ${drawer_right_left_sizeY} ${drawer_right_left_sizeZ}"/>
+
+	<xacro:property name="drawer_back_posX" value="${background_plank_posX}"/>
+	<xacro:property name="drawer_back_posY" value="${background_plank_posY - background_plank_sizeY}"/>
+	<xacro:property name="drawer_back_posZ" value="${background_plank_posZ + (drawer_bottom_sizeZ/2)}"/>
+	<xacro:property name="drawer_back_position" value="${drawer_back_posX} ${drawer_back_posY} ${drawer_back_posZ}"/>
+	<xacro:property name="drawer_front_posX" value="${drawer_back_posX}"/>
+	<xacro:property name="drawer_front_posY" value="${drawer_bottom_posY - (drawer_bottom_sizeY/2) - (drawer_front_sizeY/2)}"/>
+	<xacro:property name="drawer_front_posZ" value="${background_plank_posZ - (bottom_plank_sizeZ/2)}"/>
+	<xacro:property name="drawer_front_position" value="${drawer_front_posX} ${drawer_front_posY} ${drawer_front_posZ}"/>
+
+	<xacro:property name="drawer_right_posX" value="${rside_plank_posX - side_planks_sizeX}"/>
+	<xacro:property name="drawer_right_posY" value="${drawer_bottom_posY - (drawer_back_sizeY/2)}"/>
+	<xacro:property name="drawer_right_posZ" value="${drawer_back_posZ}"/>
+	<xacro:property name="drawer_right_position" value="${drawer_right_posX} ${drawer_right_posY} ${drawer_right_posZ}"/>
+	<xacro:property name="drawer_left_posX" value="${lside_plank_posX + side_planks_sizeX}"/>
+	<xacro:property name="drawer_left_posY" value="${drawer_right_posY}"/>
+	<xacro:property name="drawer_left_posZ" value="${drawer_right_posZ}"/>
+	<xacro:property name="drawer_left_position" value="${drawer_left_posX} ${drawer_left_posY} ${drawer_left_posZ}"/>
+
+	<xacro:property name="drawer_handle_radius" value="0.025"/>
+	<xacro:property name="drawer_handle_posX" value="${drawer_front_posX}"/>
+	<xacro:property name="drawer_handle_posY" value="${drawer_front_posY - (drawer_front_sizeY/2) - drawer_handle_radius}"/>
+	<xacro:property name="drawer_handle_posZ" value="${drawer_front_posZ}"/>
+	<xacro:property name="drawer_handle_position" value="${drawer_handle_posX} ${drawer_handle_posY} ${drawer_handle_posZ}"/>
+
+	<!-- drawer bottom -->
+	<link name="drawer_bottom">
+		<visual>
+			<geometry>
+				<box size="${drawer_bottom_size}"/>
+			</geometry>
+			<material name="light_turquoise"/>
+			<origin xyz="${drawer_bottom_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${drawer_bottom_size}"/>
+			</geometry>
+			<origin xyz="${drawer_bottom_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_bottom_joint" type="prismatic">
+		<parent link="bottom_plank"/>
+		<child link="drawer_bottom"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="500" lower="${-drawer_bottom_sizeY/2}" upper="0" velocity="0.5"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+	</joint>
+
+	<!-- drawer back -->
+	<link name="drawer_back">
+		<visual>
+			<geometry>
+				<box size="${drawer_back_size}"/>
+			</geometry>
+			<material name="light_turquoise"/>
+			<origin xyz="${drawer_back_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${drawer_back_size}"/>
+			</geometry>
+			<origin xyz="${drawer_back_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_bottom_back_joint" type="fixed">
+		<parent link="drawer_bottom"/>
+		<child link="drawer_back"/>
+	</joint>
+	
+	<!-- drawer right -->
+	<link name="drawer_right">
+		<visual>
+			<geometry>
+				<box size="${drawer_right_left_size}"/>
+			</geometry>
+			<material name="light_turquoise"/>
+			<origin xyz="${drawer_right_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${drawer_right_left_size}"/>
+			</geometry>
+			<origin xyz="${drawer_right_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_bottom_right_joint" type="fixed">
+		<parent link="drawer_bottom"/>
+		<child link="drawer_right"/>
+	</joint>
+	
+	<!-- drawer left -->
+	<link name="drawer_left">
+		<visual>
+			<geometry>
+				<box size="${drawer_right_left_size}"/>
+			</geometry>
+			<material name="light_turquoise"/>
+			<origin xyz="${drawer_left_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${drawer_right_left_size}"/>
+			</geometry>
+			<origin xyz="${drawer_left_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_bottom_left_joint" type="fixed">
+		<parent link="drawer_bottom"/>
+		<child link="drawer_left"/>
+	</joint>
+	
+	<!-- drawer front -->
+	<link name="drawer_front">
+		<visual>
+			<geometry>
+				<box size="${drawer_front_size}"/>
+			</geometry>
+			<material name="light_turquoise"/>
+			<origin xyz="${drawer_front_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="${drawer_front_size}"/>
+			</geometry>
+			<origin xyz="${drawer_front_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_bottom_front_joint" type="fixed">
+		<parent link="drawer_bottom"/>
+		<child link="drawer_front"/>
+	</joint>
+
+	<!-- drawer handle -->
+	<link name="drawer_handle">
+		<visual>
+			<geometry>
+				<sphere radius="${drawer_handle_radius}"/>
+			</geometry>
+			<material name="light_purple"/>
+			<origin xyz="${drawer_handle_position}" rpy="${scene_orientation}"/>
+		</visual>
+		<collision>
+			<geometry>
+				<sphere radius="${drawer_handle_radius}"/>
+			</geometry>
+			<origin xyz="${drawer_handle_position}" rpy="${scene_orientation}"/>
+		</collision>
+	</link>
+
+	<joint name="drawer_front_handle_joint" type="fixed">
+		<parent link="drawer_front"/>
+		<child link="drawer_handle"/>
+	</joint>
+
+</robot>

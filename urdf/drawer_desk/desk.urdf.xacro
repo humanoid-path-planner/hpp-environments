@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<robot name="desk" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="table.urdf.xacro"/>
+	<xacro:include filename="case.urdf.xacro"/>
+
+	<link name="world"/>
+
+	<xacro:property name="board_h" value="0.6"/>
+	<xacro:property name="board_sX" value="2.5"/>
+	<xacro:property name="board_sY" value="1.5"/>
+	<xacro:property name="board_sZ" value="0.05"/>
+	<xacro:property name="planks_width" value="0.025"/>
+	<xacro:property name="leg_foot_sX" value="0.05"/>
+
+	<xacro:table board_height="${board_h}" board_sizeX="${board_sX}" board_sizeY="${board_sY}" board_sizeZ="${board_sZ}" leg_foot_sizeX="${leg_foot_sX}" leg_foot_sizeZ="0.025"/>
+
+	<joint name="world_board_joint" type="fixed">
+		<parent link="world"/>
+		<child link="board"/>
+		<origin xyz="0 0 ${board_h}" rpy="0 0 0"/>
+	</joint>
+
+	<xacro:case prefix="upper" planks_thickness="${planks_width}" case_sizeX="${board_sX/3}" case_sizeY="${(board_sY/2) + planks_width}" case_sizeZ="${(board_h/3) + planks_width}"/>
+
+	<joint name="board_upper_case_background_joint" type="fixed">
+		<parent link="board"/>
+		<child link="upper_case_background"/>
+		<origin xyz="${(board_sX/2) - ((board_sX/3)/2) - (leg_foot_sX)} ${planks_width/2} ${(-board_sZ/2) - ((board_h/3)/2)}" rpy="0 0 0"/>
+	</joint>
+
+</robot>
