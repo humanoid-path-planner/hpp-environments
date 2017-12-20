@@ -2,4 +2,141 @@
 
 <robot name="drawer" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+	<material name="light_turquoise">
+		<color rgba="0 0.6 0.6 1"/>
+	</material>
+	<material name="light_purple">
+		<color rgba="0.3 0.3 0.6 1"/>
+	</material>
+
+	<xacro:macro name="drawer" params="prefix planks_thickness drawer_sizeX drawer_sizeY drawer_sizeZ drawer_handle_radius">
+
+		<link name="${prefix}_drawer_bottom">
+			<visual>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_turquoise"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<link name="${prefix}_drawer_background">
+			<visual>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_turquoise"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_drawer_bottom_background_joint" type="fixed">
+			<parent link="${prefix}_drawer_bottom"/>
+			<child link="${prefix}_drawer_background"/>
+			<origin xyz="" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_drawer_right">
+			<visual>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_turquoise"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_drawer_bottom_right_joint" type="fixed">
+			<parent link="${prefix}_drawer_bottom"/>
+			<child link="${prefix}_drawer_right"/>
+			<origin xyz="" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_drawer_left">
+			<visual>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_turquoise"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_drawer_bottom_left_joint" type="fixed">
+			<parent link="${prefix}_drawer_bottom"/>
+			<child link="${prefix}_drawer_left"/>
+			<origin xyz="" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_drawer_front">
+			<visual>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_turquoise"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${} ${} ${}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_drawer_bottom_front_joint" type="fixed">
+			<parent link="${prefix}_drawer_bottom"/>
+			<child link="${prefix}_drawer_front"/>
+			<origin xyz="" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_drawer_handle">
+			<visual>
+				<geometry>
+					<sphere radius="${drawer_handle_radius}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_purple"/>
+			</visual>
+			<collision>
+				<geometry>
+					<sphere radius="${drawer_handle_radius}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_drawer_front_handle_joint" type="fixed">
+			<parent link="${prefix}_drawer_front"/>
+			<child link="${prefix}_drawer_handle"/>
+			<origin xyz="" rpy="0 0 0"/>
+		</joint>
+
+	</xacro:macro>
+
 </robot>
