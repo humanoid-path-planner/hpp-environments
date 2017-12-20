@@ -14,14 +14,14 @@
 		<link name="${prefix}_drawer_bottom">
 			<visual>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX - (2*planks_thickness)} ${drawer_sizeY - planks_thickness} ${planks_thickness}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="light_turquoise"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX - (2*planks_thickness)} ${drawer_sizeY - planks_thickness} ${planks_thickness}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 			</collision>
@@ -30,14 +30,14 @@
 		<link name="${prefix}_drawer_background">
 			<visual>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX - (2*planks_thickness)} ${planks_thickness} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="light_turquoise"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX - (2*planks_thickness)} ${planks_thickness} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 			</collision>
@@ -46,20 +46,20 @@
 		<joint name="${prefix}_drawer_bottom_background_joint" type="fixed">
 			<parent link="${prefix}_drawer_bottom"/>
 			<child link="${prefix}_drawer_background"/>
-			<origin xyz="" rpy="0 0 0"/>
+			<origin xyz="0 ${((drawer_sizeY - planks_thickness)/2) - (planks_thickness/2)} ${((drawer_sizeZ - (2*planks_thickness))/2) + (planks_thickness/2)}" rpy="0 0 0"/>
 		</joint>
 
 		<link name="${prefix}_drawer_right">
 			<visual>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${planks_thickness} ${drawer_sizeY - (2*planks_thickness)} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="light_turquoise"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${planks_thickness} ${drawer_sizeY - (2*planks_thickness)} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 			</collision>
@@ -68,20 +68,20 @@
 		<joint name="${prefix}_drawer_bottom_right_joint" type="fixed">
 			<parent link="${prefix}_drawer_bottom"/>
 			<child link="${prefix}_drawer_right"/>
-			<origin xyz="" rpy="0 0 0"/>
+			<origin xyz="${((drawer_sizeX - (2*planks_thickness))/2) - (planks_thickness/2)} ${-planks_thickness/2} ${((drawer_sizeZ - (2*planks_thickness))/2) + (planks_thickness/2)}" rpy="0 0 0"/>
 		</joint>
 
 		<link name="${prefix}_drawer_left">
 			<visual>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${planks_thickness} ${drawer_sizeY - (2*planks_thickness)} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="light_turquoise"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${planks_thickness} ${drawer_sizeY - (2*planks_thickness)} ${drawer_sizeZ - (2*planks_thickness)}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 			</collision>
@@ -90,20 +90,20 @@
 		<joint name="${prefix}_drawer_bottom_left_joint" type="fixed">
 			<parent link="${prefix}_drawer_bottom"/>
 			<child link="${prefix}_drawer_left"/>
-			<origin xyz="" rpy="0 0 0"/>
+			<origin xyz="${-((drawer_sizeX - (2*planks_thickness))/2) + (planks_thickness/2)} ${-planks_thickness/2} ${((drawer_sizeZ - (2*planks_thickness))/2) + (planks_thickness/2)}" rpy="0 0 0"/>
 		</joint>
 
 		<link name="${prefix}_drawer_front">
 			<visual>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX} ${planks_thickness} ${drawer_sizeZ}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="light_turquoise"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${} ${} ${}"/>
+					<box size="${drawer_sizeX} ${planks_thickness} ${drawer_sizeZ}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 			</collision>
@@ -112,7 +112,7 @@
 		<joint name="${prefix}_drawer_bottom_front_joint" type="fixed">
 			<parent link="${prefix}_drawer_bottom"/>
 			<child link="${prefix}_drawer_front"/>
-			<origin xyz="" rpy="0 0 0"/>
+			<origin xyz="0 ${-((drawer_sizeY - planks_thickness)/2) - (planks_thickness/2)} ${(drawer_sizeZ/2) - (3*planks_thickness/2)}" rpy="0 0 0"/>
 		</joint>
 
 		<link name="${prefix}_drawer_handle">
@@ -134,7 +134,7 @@
 		<joint name="${prefix}_drawer_front_handle_joint" type="fixed">
 			<parent link="${prefix}_drawer_front"/>
 			<child link="${prefix}_drawer_handle"/>
-			<origin xyz="" rpy="0 0 0"/>
+			<origin xyz="0 ${-drawer_handle_radius - (planks_thickness/2)} 0" rpy="0 0 0"/>
 		</joint>
 
 	</xacro:macro>

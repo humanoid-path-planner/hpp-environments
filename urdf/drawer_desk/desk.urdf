@@ -13,6 +13,12 @@
   <material name="marine">
     <color rgba="0 0.1 0.2 1"/>
   </material>
+  <material name="light_turquoise">
+    <color rgba="0 0.6 0.6 1"/>
+  </material>
+  <material name="light_purple">
+    <color rgba="0.3 0.3 0.6 1"/>
+  </material>
   <link name="world"/>
   <link name="board">
     <visual>
@@ -193,6 +199,128 @@
     <parent link="board"/>
     <child link="upper_case_background"/>
     <origin rpy="0 0 0" xyz="0.783333333333 0.0125 -0.125"/>
+  </joint>
+  <link name="upper_drawer_bottom">
+    <visual>
+      <geometry>
+        <box size="0.783333333333 0.75 0.025"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_turquoise"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.783333333333 0.75 0.025"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <link name="upper_drawer_background">
+    <visual>
+      <geometry>
+        <box size="0.783333333333 0.025 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_turquoise"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.783333333333 0.025 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="upper_drawer_bottom_background_joint" type="fixed">
+    <parent link="upper_drawer_bottom"/>
+    <child link="upper_drawer_background"/>
+    <origin rpy="0 0 0" xyz="0 0.3625 0.1"/>
+  </joint>
+  <link name="upper_drawer_right">
+    <visual>
+      <geometry>
+        <box size="0.025 0.725 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_turquoise"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.725 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="upper_drawer_bottom_right_joint" type="fixed">
+    <parent link="upper_drawer_bottom"/>
+    <child link="upper_drawer_right"/>
+    <origin rpy="0 0 0" xyz="0.379166666666 -0.0125 0.1"/>
+  </joint>
+  <link name="upper_drawer_left">
+    <visual>
+      <geometry>
+        <box size="0.025 0.725 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_turquoise"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.725 0.175"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="upper_drawer_bottom_left_joint" type="fixed">
+    <parent link="upper_drawer_bottom"/>
+    <child link="upper_drawer_left"/>
+    <origin rpy="0 0 0" xyz="-0.379166666666 -0.0125 0.1"/>
+  </joint>
+  <link name="upper_drawer_front">
+    <visual>
+      <geometry>
+        <box size="0.833333333333 0.025 0.225"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_turquoise"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.833333333333 0.025 0.225"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="upper_drawer_bottom_front_joint" type="fixed">
+    <parent link="upper_drawer_bottom"/>
+    <child link="upper_drawer_front"/>
+    <origin rpy="0 0 0" xyz="0 -0.3875 0.075"/>
+  </joint>
+  <link name="upper_drawer_handle">
+    <visual>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="light_purple"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+  </link>
+  <joint name="upper_drawer_front_handle_joint" type="fixed">
+    <parent link="upper_drawer_front"/>
+    <child link="upper_drawer_handle"/>
+    <origin rpy="0 0 0" xyz="0 -0.0375 0"/>
+  </joint>
+  <joint name="upper_case_bottom_upper_drawer_bottom_joint" type="prismatic">
+    <parent link="upper_case_bottom"/>
+    <child link="upper_drawer_bottom"/>
+    <limit effort="500" lower="-0.3875" upper="0" velocity="0.5"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.0125 0.025"/>
   </joint>
 </robot>
 

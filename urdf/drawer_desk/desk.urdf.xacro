@@ -4,6 +4,7 @@
 
 	<xacro:include filename="table.urdf.xacro"/>
 	<xacro:include filename="case.urdf.xacro"/>
+	<xacro:include filename="drawer.urdf.xacro"/>
 
 	<link name="world"/>
 
@@ -28,6 +29,16 @@
 		<parent link="board"/>
 		<child link="upper_case_background"/>
 		<origin xyz="${(board_sX/2) - ((board_sX/3)/2) - (leg_foot_sX)} ${planks_width/2} ${(-board_sZ/2) - ((board_h/3)/2)}" rpy="0 0 0"/>
+	</joint>
+
+	<xacro:drawer prefix="upper" planks_thickness="${planks_width}" drawer_sizeX="${board_sX/3}" drawer_sizeY="${(board_sY/2) + planks_width}" drawer_sizeZ="${(board_h/3) + planks_width}" drawer_handle_radius="0.025"/>
+
+	<joint name="upper_case_bottom_upper_drawer_bottom_joint" type="prismatic">
+		<parent link="upper_case_bottom"/>
+		<child link="upper_drawer_bottom"/>
+		<limit effort="500" lower="${-(((board_sY/2) + planks_width)/2)}" upper="0" velocity="0.5"/>
+		<axis xyz="0 1 0"/>
+		<origin xyz="0 ${-planks_width/2} ${planks_width}" rpy="0 0 0"/>
 	</joint>
 
 </robot>
