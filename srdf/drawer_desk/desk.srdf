@@ -1,2 +1,19 @@
+<?xml version="1.0"?>
+
 <robot name="desk">
+	<disable_collisions link1="board" link2="upper_drawer_background" />
+	<disable_collisions link1="board" link2="upper_drawer_front" />
+	<disable_collisions link1="board" link2="upper_drawer_left" />
+	<disable_collisions link1="board" link2="upper_drawer_right" />
+
+	<disable_collisions link1="upper_case_background" link2="upper_drawer_bottom" />
+	<disable_collisions link1="upper_case_bottom" link2="upper_drawer_front" />
+	<disable_collisions link1="upper_drawer_bottom" link2="upper_case_left" />
+	<disable_collisions link1="upper_drawer_bottom" link2="upper_case_right" />
+	<disable_collisions link1="upper_drawer_background" link2="upper_case_left" />
+	<disable_collisions link1="upper_drawer_background" link2="upper_case_right" />
+	<disable_collisions link1="upper_drawer_front" link2="upper_case_left" />
+	<disable_collisions link1="upper_drawer_front" link2="upper_case_right" />
+	<disable_collisions link1="upper_drawer_left" link2="upper_case_left" />
+	<disable_collisions link1="upper_drawer_right" link2="upper_case_right" />
 </robot>
