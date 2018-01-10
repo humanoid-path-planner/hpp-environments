@@ -9,6 +9,8 @@
 		<color rgba="0.3 0.3 0.6 1"/>
 	</material>
 
+	<xacro:property name="pi" value="3.14159265359"/>
+
 	<xacro:macro name="drawer" params="prefix planks_thickness drawer_sizeX drawer_sizeY drawer_sizeZ drawer_handle_radius">
 
 		<link name="${prefix}_drawer_bottom">
@@ -120,14 +122,14 @@
 				<geometry>
 					<sphere radius="${drawer_handle_radius}"/>
 				</geometry>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
 				<material name="light_purple"/>
 			</visual>
 			<collision>
 				<geometry>
 					<sphere radius="${drawer_handle_radius}"/>
 				</geometry>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
 			</collision>
 		</link>
 
