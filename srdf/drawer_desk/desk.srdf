@@ -3,7 +3,8 @@
 <robot name="desk">
 
 	<handle name="upper_drawer_spherical_handle" clearance="0.025">
-		<position> 0 -0.0375 0 1 0 0 0 </position>
+		<!-- <position> 0 -0.0375 0 1 0 0 0 </position> -->
+		<position> 0 -0.0375 0 0.707106781 0 0 0.707106781 </position>
 		<link name="upper_drawer_front" />
 	</handle>
 
