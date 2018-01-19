@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<robot name="table" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="table_leg.urdf.xacro"/>
+
+	<material name="dark_gray">
+		<color rgba="0.3 0.3 0.3 1"/>
+	</material>
+
+	<xacro:macro name="table" params="board_height board_sizeX board_sizeY board_sizeZ leg_foot_sizeX leg_foot_sizeZ">
+
+		<link name="board">
+			<visual>
+				<geometry>
+					<box size="${board_sizeX} ${board_sizeY} ${board_sizeZ}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="dark_gray"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${board_sizeX} ${board_sizeY} ${board_sizeZ}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<xacro:table_leg prefix="right" body_length="${board_height - leg_foot_sizeZ - (board_sizeZ/2)}" body_radius="${(leg_foot_sizeX/2)}" foot_sizeX="${leg_foot_sizeX}" foot_sizeY="${board_sizeY}" foot_sizeZ="${leg_foot_sizeZ}"/>
+		<xacro:table_leg prefix="left" body_length="${board_height - leg_foot_sizeZ - (board_sizeZ/2)}" body_radius="${(leg_foot_sizeX/2)}" foot_sizeX="${leg_foot_sizeX}" foot_sizeY="${board_sizeY}" foot_sizeZ="${leg_foot_sizeZ}"/>
+
+		<joint name="board_right_body_joint" type="fixed">
+			<parent link="board"/>
+			<child link="right_body"/>
+			<origin xyz="${(board_sizeX/2) - (leg_foot_sizeX/2)} 0 ${-board_sizeZ/2 - ((board_height - leg_foot_sizeZ - (board_sizeZ/2))/2)}" rpy="0 0 0"/>
+		</joint>
+
+		<joint name="board_left_body_joint" type="fixed">
+			<parent link="board"/>
+			<child link="left_body"/>
+			<origin xyz="${(-board_sizeX/2) + (leg_foot_sizeX/2)} 0 ${-board_sizeZ/2 - ((board_height - leg_foot_sizeZ - (board_sizeZ/2))/2)}" rpy="0 0 0"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>

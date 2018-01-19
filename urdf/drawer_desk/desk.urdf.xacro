@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<robot name="desk" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="table.urdf.xacro"/>
+	<xacro:include filename="case.urdf.xacro"/>
+	<xacro:include filename="drawer.urdf.xacro"/>
+
+	<xacro:property name="ground_thickness" value="0.1"/>
+
+	<material name="black">
+		<color rgba="0.05 0.05 0.05 1"/>
+	</material>
+
+	<link name="world"/>
+
+	<link name="ground">
+		<visual>
+			<geometry>
+				<box size="5 5 ${ground_thickness}"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="black"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="5 5 ${ground_thickness}"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</collision>
+	</link>
+
+	<joint name="world_ground_joint" type="fixed">
+		<parent link="world"/>
+		<child link="ground"/>
+		<origin xyz="0 0 ${-ground_thickness/2}" rpy="0 0 0"/>
+	</joint>
+
+	<xacro:property name="board_h" value="0.7"/>
+	<xacro:property name="board_sX" value="2.5"/>
+	<xacro:property name="board_sY" value="1.5"/>
+	<xacro:property name="board_sZ" value="0.05"/>
+	<xacro:property name="planks_width" value="0.025"/>
+	<xacro:property name="leg_foot_sX" value="0.05"/>
+
+	<xacro:table board_height="${board_h}" board_sizeX="${board_sX}" board_sizeY="${board_sY}" board_sizeZ="${board_sZ}" leg_foot_sizeX="${leg_foot_sX}" leg_foot_sizeZ="0.025"/>
+
+	<joint name="world_board_joint" type="fixed">
+		<parent link="world"/>
+		<child link="board"/>
+		<origin xyz="0 0 ${board_h}" rpy="0 0 0"/>
+	</joint>
+
+	<xacro:case prefix="upper" planks_thickness="${planks_width}" case_sizeX="${board_sX/3}" case_sizeY="${(board_sY/2) + planks_width}" case_sizeZ="${(board_h/3) + planks_width}"/>
+
+	<joint name="board_upper_case_background_joint" type="fixed">
+		<parent link="board"/>
+		<child link="upper_case_background"/>
+		<origin xyz="${(board_sX/2) - ((board_sX/3)/2) - (leg_foot_sX)} ${planks_width/2} ${(-board_sZ/2) - ((board_h/3)/2)}" rpy="0 0 0"/>
+	</joint>
+
+	<xacro:drawer prefix="upper" planks_thickness="${planks_width}" drawer_sizeX="${board_sX/3}" drawer_sizeY="${(board_sY/2) + planks_width}" drawer_sizeZ="${(board_h/3) + planks_width}" drawer_handle_radius="0.025"/>
+
+	<joint name="upper_case_bottom_upper_drawer_bottom_joint" type="prismatic">
+		<parent link="upper_case_bottom"/>
+		<child link="upper_drawer_bottom"/>
+		<limit effort="500" lower="${-(((board_sY/2) + planks_width)/2)}" upper="0" velocity="0.5"/>
+		<axis xyz="0 1 0"/>
+		<origin xyz="0 ${-planks_width/2} ${planks_width}" rpy="0 0 0"/>
+	</joint>
+
+</robot>

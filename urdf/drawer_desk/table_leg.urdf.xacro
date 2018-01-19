@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<robot name="table_leg" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<material name="light_gray">
+		<color rgba="0.6 0.6 0.6 1"/>
+	</material>
+
+	<xacro:macro name="table_leg" params="prefix body_length body_radius foot_sizeX foot_sizeY foot_sizeZ">
+
+		<link name="${prefix}_body">
+			<visual>
+				<geometry>
+					<cylinder length="${body_length}" radius="${body_radius}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_gray"/>
+			</visual>
+			<collision>
+				<geometry>
+					<cylinder length="${body_length}" radius="${body_radius}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<link name="${prefix}_foot">
+			<visual>
+				<geometry>
+					<box size="${foot_sizeX} ${foot_sizeY} ${foot_sizeZ}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="light_gray"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${foot_sizeX} ${foot_sizeY} ${foot_sizeZ}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_body_foot_joint" type="fixed">
+			<parent link="${prefix}_body"/>
+			<child link="${prefix}_foot"/>
+			<origin xyz="0 0 ${(-body_length/2) - (foot_sizeZ/2)}" rpy="0 0 0"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>

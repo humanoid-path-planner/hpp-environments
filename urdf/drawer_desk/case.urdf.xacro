@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<robot name="case" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<material name="marine">
+		<color rgba="0 0.1 0.2 1"/>
+	</material>
+
+	<xacro:macro name="case" params="prefix planks_thickness case_sizeX case_sizeY case_sizeZ">
+
+		<link name="${prefix}_case_background">
+			<visual>
+				<geometry>
+					<box size="${case_sizeX} ${planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="marine"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${case_sizeX} ${planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<link name="${prefix}_case_bottom">
+			<visual>
+				<geometry>
+					<box size="${case_sizeX} ${case_sizeY} ${planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="marine"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${case_sizeX} ${case_sizeY} ${planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_case_background_bottom_joint" type="fixed">
+			<parent link="${prefix}_case_background"/>
+			<child link="${prefix}_case_bottom"/>
+			<origin xyz="0 ${(planks_thickness/2) - (case_sizeY/2)} ${-((case_sizeZ - planks_thickness)/2) - (planks_thickness/2)}" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_case_right">
+			<visual>
+				<geometry>
+					<box size="${planks_thickness} ${case_sizeY - planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="marine"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${planks_thickness} ${case_sizeY - planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_case_background_right_joint" type="fixed">
+			<parent link="${prefix}_case_background"/>
+			<child link="${prefix}_case_right"/>
+			<origin xyz="${(case_sizeX/2) - (planks_thickness/2)} ${-(planks_thickness/2) - ((case_sizeY - planks_thickness)/2)} 0" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}_case_left">
+			<visual>
+				<geometry>
+					<box size="${planks_thickness} ${case_sizeY - planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="marine"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${planks_thickness} ${case_sizeY - planks_thickness} ${case_sizeZ - planks_thickness}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			</collision>
+		</link>
+
+		<joint name="${prefix}_case_background_left_joint" type="fixed">
+			<parent link="${prefix}_case_background"/>
+			<child link="${prefix}_case_left"/>
+			<origin xyz="${-(case_sizeX/2) + (planks_thickness/2)} ${-(planks_thickness/2) - ((case_sizeY - planks_thickness)/2)} 0" rpy="0 0 0"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>
