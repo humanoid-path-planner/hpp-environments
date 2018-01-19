@@ -36,7 +36,7 @@
 		<origin xyz="0 0 ${-ground_thickness/2}" rpy="0 0 0"/>
 	</joint>
 
-	<xacro:property name="board_h" value="0.6"/>
+	<xacro:property name="board_h" value="0.7"/>
 	<xacro:property name="board_sX" value="2.5"/>
 	<xacro:property name="board_sY" value="1.5"/>
 	<xacro:property name="board_sZ" value="0.05"/>

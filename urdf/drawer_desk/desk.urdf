@@ -61,14 +61,14 @@
   <link name="right_body">
     <visual>
       <geometry>
-        <cylinder length="0.55" radius="0.025"/>
+        <cylinder length="0.65" radius="0.025"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_gray"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.55" radius="0.025"/>
+        <cylinder length="0.65" radius="0.025"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -91,19 +91,19 @@
   <joint name="right_body_foot_joint" type="fixed">
     <parent link="right_body"/>
     <child link="right_foot"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.2875"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.3375"/>
   </joint>
   <link name="left_body">
     <visual>
       <geometry>
-        <cylinder length="0.55" radius="0.025"/>
+        <cylinder length="0.65" radius="0.025"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_gray"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.55" radius="0.025"/>
+        <cylinder length="0.65" radius="0.025"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -126,34 +126,34 @@
   <joint name="left_body_foot_joint" type="fixed">
     <parent link="left_body"/>
     <child link="left_foot"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.2875"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.3375"/>
   </joint>
   <joint name="board_right_body_joint" type="fixed">
     <parent link="board"/>
     <child link="right_body"/>
-    <origin rpy="0 0 0" xyz="1.225 0 -0.3"/>
+    <origin rpy="0 0 0" xyz="1.225 0 -0.35"/>
   </joint>
   <joint name="board_left_body_joint" type="fixed">
     <parent link="board"/>
     <child link="left_body"/>
-    <origin rpy="0 0 0" xyz="-1.225 0 -0.3"/>
+    <origin rpy="0 0 0" xyz="-1.225 0 -0.35"/>
   </joint>
   <joint name="world_board_joint" type="fixed">
     <parent link="world"/>
     <child link="board"/>
-    <origin rpy="0 0 0" xyz="0 0 0.6"/>
+    <origin rpy="0 0 0" xyz="0 0 0.7"/>
   </joint>
   <link name="upper_case_background">
     <visual>
       <geometry>
-        <box size="0.833333333333 0.025 0.2"/>
+        <box size="0.833333333333 0.025 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="marine"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.833333333333 0.025 0.2"/>
+        <box size="0.833333333333 0.025 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -176,19 +176,19 @@
   <joint name="upper_case_background_bottom_joint" type="fixed">
     <parent link="upper_case_background"/>
     <child link="upper_case_bottom"/>
-    <origin rpy="0 0 0" xyz="0 -0.375 -0.1125"/>
+    <origin rpy="0 0 0" xyz="0 -0.375 -0.129166666667"/>
   </joint>
   <link name="upper_case_right">
     <visual>
       <geometry>
-        <box size="0.025 0.75 0.2"/>
+        <box size="0.025 0.75 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="marine"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.025 0.75 0.2"/>
+        <box size="0.025 0.75 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -201,14 +201,14 @@
   <link name="upper_case_left">
     <visual>
       <geometry>
-        <box size="0.025 0.75 0.2"/>
+        <box size="0.025 0.75 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="marine"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.025 0.75 0.2"/>
+        <box size="0.025 0.75 0.233333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -221,7 +221,7 @@
   <joint name="board_upper_case_background_joint" type="fixed">
     <parent link="board"/>
     <child link="upper_case_background"/>
-    <origin rpy="0 0 0" xyz="0.783333333333 0.0125 -0.125"/>
+    <origin rpy="0 0 0" xyz="0.783333333333 0.0125 -0.141666666667"/>
   </joint>
   <link name="upper_drawer_bottom">
     <visual>
@@ -241,14 +241,14 @@
   <link name="upper_drawer_background">
     <visual>
       <geometry>
-        <box size="0.783333333333 0.025 0.175"/>
+        <box size="0.783333333333 0.025 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_turquoise"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.783333333333 0.025 0.175"/>
+        <box size="0.783333333333 0.025 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -256,19 +256,19 @@
   <joint name="upper_drawer_bottom_background_joint" type="fixed">
     <parent link="upper_drawer_bottom"/>
     <child link="upper_drawer_background"/>
-    <origin rpy="0 0 0" xyz="0 0.3625 0.1"/>
+    <origin rpy="0 0 0" xyz="0 0.3625 0.116666666667"/>
   </joint>
   <link name="upper_drawer_right">
     <visual>
       <geometry>
-        <box size="0.025 0.725 0.175"/>
+        <box size="0.025 0.725 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_turquoise"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.025 0.725 0.175"/>
+        <box size="0.025 0.725 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -276,19 +276,19 @@
   <joint name="upper_drawer_bottom_right_joint" type="fixed">
     <parent link="upper_drawer_bottom"/>
     <child link="upper_drawer_right"/>
-    <origin rpy="0 0 0" xyz="0.379166666666 -0.0125 0.1"/>
+    <origin rpy="0 0 0" xyz="0.379166666666 -0.0125 0.116666666667"/>
   </joint>
   <link name="upper_drawer_left">
     <visual>
       <geometry>
-        <box size="0.025 0.725 0.175"/>
+        <box size="0.025 0.725 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_turquoise"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.025 0.725 0.175"/>
+        <box size="0.025 0.725 0.208333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -296,19 +296,19 @@
   <joint name="upper_drawer_bottom_left_joint" type="fixed">
     <parent link="upper_drawer_bottom"/>
     <child link="upper_drawer_left"/>
-    <origin rpy="0 0 0" xyz="-0.379166666666 -0.0125 0.1"/>
+    <origin rpy="0 0 0" xyz="-0.379166666666 -0.0125 0.116666666667"/>
   </joint>
   <link name="upper_drawer_front">
     <visual>
       <geometry>
-        <box size="0.833333333333 0.025 0.225"/>
+        <box size="0.833333333333 0.025 0.258333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="light_turquoise"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.833333333333 0.025 0.225"/>
+        <box size="0.833333333333 0.025 0.258333333333"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -316,7 +316,7 @@
   <joint name="upper_drawer_bottom_front_joint" type="fixed">
     <parent link="upper_drawer_bottom"/>
     <child link="upper_drawer_front"/>
-    <origin rpy="0 0 0" xyz="0 -0.3875 0.075"/>
+    <origin rpy="0 0 0" xyz="0 -0.3875 0.0916666666665"/>
   </joint>
   <link name="upper_drawer_handle">
     <visual>
