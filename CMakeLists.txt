@@ -20,7 +20,7 @@ INCLUDE(cmake/python.cmake)
 
 SET(PROJECT_NAME hpp_environments)
 SET(PROJECT_DESCRIPTION "Environments for the humanoid path planner platform.")
-SET(PROJECT_URL "")
+SET(PROJECT_URL "https://github.com/humanoid-path-planner/hpp-environments")
 
 SETUP_PROJECT()
 
