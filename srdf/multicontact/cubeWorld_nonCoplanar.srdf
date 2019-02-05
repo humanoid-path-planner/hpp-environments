@@ -4,7 +4,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/cube_non_coplanar.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/cube_non_coplanar.stl"/>
       </geometry>
       <material name="white">
         <color rgba="1 1 1 1"/>
@@ -13,7 +13,7 @@
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/cube_non_coplanar.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/cube_non_coplanar.stl"/>
       </geometry>
     </collision>
   </link>

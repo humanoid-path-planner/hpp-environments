@@ -12,7 +12,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/climb.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/climb.stl"/>
       </geometry>
     </collision>
   </link>

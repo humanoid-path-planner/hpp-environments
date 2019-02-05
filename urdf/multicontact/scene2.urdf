@@ -22,7 +22,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/ground.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/ground.stl"/>
       </geometry>
     </collision>
   </link> 
@@ -45,7 +45,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/board.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/board.stl"/>
       </geometry>
     </collision>
   </link>
@@ -69,7 +69,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/chair_simple.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/chair_simple.stl"/>
       </geometry>
     </collision>
   </link>
@@ -92,7 +92,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/pedal.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/pedal.stl"/>
       </geometry>
     </collision>
   </link>

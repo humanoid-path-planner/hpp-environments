@@ -3,7 +3,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/flat_hole.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/flat_hole.stl"/>
       </geometry>
       <material name="white">
         <color rgba="1 1 1 1"/>
@@ -12,7 +12,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/flat_hole.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/flat_hole.stl"/>
       </geometry>
     </collision>
   </link>

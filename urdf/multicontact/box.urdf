@@ -3,7 +3,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/robot_box.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/robot_box.stl"/>
       </geometry>
       <material name="white">
         <color rgba="1 1 1 1"/>
@@ -12,7 +12,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp-rbprm-corba/meshes/box.stl"/>
+        <mesh filename="package://hpp_environments/meshes/multicontact/box.stl"/>
       </geometry>
     </collision>
   </link>
