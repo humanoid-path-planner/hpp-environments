@@ -17,13 +17,13 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/python.cmake)
+INCLUDE(cmake/hpp.cmake)
 
 SET(PROJECT_NAME hpp-environments)
 SET(PROJECT_DESCRIPTION "Environments for the humanoid path planner platform.")
-SET(PROJECT_URL "https://github.com/humanoid-path-planner/${PROJECT_NAME}")
 STRING(REPLACE "-" "_" ROS_PROJECT_NAME ${PROJECT_NAME})
 
-SETUP_PROJECT()
+SETUP_HPP_PROJECT()
 
 FINDPYTHON(2.7 EXACT REQUIRED)
 
