@@ -1,0 +1,16 @@
+<robot name="antfarm_firstLevel_wall">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp-environments/meshes/multicontact/antfarm_firstLevel.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp-environments/meshes/multicontact/antfarm_firstLevel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

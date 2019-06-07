@@ -1,0 +1,19 @@
+<robot name="ori_plinth">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp-environments/meshes/multicontact/ori_plinth.stl"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp-environments/meshes/multicontact/ori_plinth.stl"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
