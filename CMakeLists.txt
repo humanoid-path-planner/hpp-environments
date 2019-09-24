@@ -17,7 +17,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/hpp.cmake)
-INCLUDE(cmake/hpp/python.cmake)
+INCLUDE(cmake/python.cmake)
 
 SET(PROJECT_NAME hpp-environments)
 SET(PROJECT_DESCRIPTION "Environments for the humanoid path planner platform.")
@@ -25,7 +25,7 @@ STRING(REPLACE "-" "_" ROS_PROJECT_NAME ${PROJECT_NAME})
 
 SETUP_HPP_PROJECT()
 
-HPP_FINDPYTHON(REQUIRED)
+FINDPYTHON(REQUIRED)
 
 SET(TEXTURE_FILES
   texture/logo_romeo.jpg
