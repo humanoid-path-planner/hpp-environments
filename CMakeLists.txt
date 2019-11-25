@@ -14,16 +14,17 @@
 # this file.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-INCLUDE(cmake/base.cmake)
-INCLUDE(cmake/hpp.cmake)
-INCLUDE(cmake/python.cmake)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 SET(PROJECT_NAME hpp-environments)
 SET(PROJECT_DESCRIPTION "Environments for the humanoid path planner platform.")
 STRING(REPLACE "-" "_" ROS_PROJECT_NAME ${PROJECT_NAME})
 
-SETUP_HPP_PROJECT()
+INCLUDE(cmake/hpp.cmake)
+INCLUDE(cmake/python.cmake)
+
+COMPUTE_PROJECT_ARGS(PROJECT_ARGS LANGUAGES CXX)
+PROJECT(${PROJECT_NAME} ${PROJECT_ARGS})
 
 FINDPYTHON(REQUIRED)
 
@@ -48,5 +49,3 @@ INSTALL(FILES package.xml
   DESTINATION "share/${ROS_PROJECT_NAME}")
 
 ADD_SUBDIRECTORY(src)
-
-SETUP_PROJECT_FINALIZE()
