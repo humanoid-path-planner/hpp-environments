@@ -1,9 +1,9 @@
-<robot name="stair_bauzil">
+<robot name="chair">
   <link name="base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp_environments/meshes/multicontact/bauzil_stairs.stl"/>
+        <mesh filename="package://hpp_environments/meshes/ori/slalom1.stl"/>
       </geometry>
       <material name="white">
         <color rgba="1 1 1 1"/>
@@ -12,7 +12,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hpp_environments/meshes/multicontact/bauzil_stairs_collision.stl"/>
+        <mesh filename="package://hpp_environments/meshes/ori/slalom1.stl"/>
       </geometry>
     </collision>
   </link>
