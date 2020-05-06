@@ -1,10 +1,16 @@
-<package>
-  <name>hpp_environments</name>
-  <version>4.9.0</version>
-  <description>
-    environments for HPP.
-  </description>
-  <author>Joseph Mirabel</author>
-  <maintainer email="hpp@laas.fr">Joseph Mirabel</maintainer>
-  <license>LGPL v2</license>
-</package>
+<?xml version='1.0'?> 
+ <package format='2'> 
+ <name>hpp-environments</name> 
+ <version>4.9.0</version> 
+ <description>Environments for the humanoid path planner platform. </description> 
+ 
+ <maintainer email='hpp@laas.fr'>Joseph Mirabel</maintainer> 
+ <license>LGPL</license> 
+ 
+ <!-- <url type='website'>https://github.com/humanoid-path-planner/hpp-environments </url> --> 
+ 
+ <author>Joseph Mirabel</author> 
+ <author>Florent Lamiraux et al.</author> 
+ 
+ <buildtool_depend>catkin</buildtool_depend> 
+ </package>
