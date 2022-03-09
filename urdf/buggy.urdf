@@ -39,6 +39,12 @@
         <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontright.dae"/>
       </geometry>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontright.dae"/>
+      </geometry>
+    </collision>
   </link>
   <link name="wheel_frontleft">
     <visual>
@@ -47,5 +53,11 @@
         <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontleft.dae"/>
       </geometry>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hpp_environments/meshes/buggy/wheel_frontleft.dae"/>
+      </geometry>
+    </collision>
   </link>
 </robot>

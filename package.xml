@@ -13,4 +13,5 @@
  <author>Florent Lamiraux et al.</author>
 
  <buildtool_depend>catkin</buildtool_depend>
+ <build_depend>example-robot-data</build_depend>
  </package>
