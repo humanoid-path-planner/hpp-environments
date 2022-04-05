@@ -17,13 +17,13 @@
       </geometry>
     </collision>
   </link>
-  
+
   <joint name="j_foot_one" type="fixed">
     <parent link="table_base"/>
     <child link="l_foot_one"/>
     <origin xyz="0 0 0"/>
   </joint>
-        
+
   <link name="l_foot_one">
     <visual>
       <origin xyz="0 0 -0.3"/>
