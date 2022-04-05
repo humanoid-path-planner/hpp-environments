@@ -18,9 +18,10 @@
 
 from hpp.corbaserver.robot import Robot
 
-##
-#  Control of robot Buggy in hpp
-class Buggy (Robot):
+
+class Buggy(Robot):
+    """Control of robot Buggy in hpp."""
+
     ##
     #  Information to retrieve urdf and srdf files.
     packageName = "hpp_environments"
@@ -31,5 +32,5 @@ class Buggy (Robot):
     urdfSuffix = ""
     srdfSuffix = ""
 
-    def __init__ (self, robotName, load = True):
-        Robot.__init__ (self, robotName, self.rootJointType, load)
+    def __init__(self, robotName, load=True):
+        Robot.__init__(self, robotName, self.rootJointType, load)
