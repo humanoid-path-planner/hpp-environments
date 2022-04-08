@@ -14,13 +14,13 @@
       </geometry>
     </collision>
   </link>
-  
+
   <joint name="j_decor_one" type="fixed">
     <parent link="decor_base"/>
     <child link="l_decor_one"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
-        
+
   <link name="l_decor_one">
     <visual>
       <origin xyz="0.27 0 1.025"/>
@@ -35,14 +35,14 @@
       </geometry>
     </collision>
   </link>
-  
-  
+
+
   <joint name="j_decor_two" type="fixed">
     <parent link="l_decor_one"/>
     <child link="l_decor_two"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
-        
+
   <link name="l_decor_two">
     <visual>
       <origin xyz="0.27 -0.6 0.475"/>
@@ -57,14 +57,14 @@
       </geometry>
     </collision>
   </link>
-  
-  
+
+
   <joint name="j_decor_three" type="fixed">
     <parent link="l_decor_two"/>
     <child link="l_decor_three"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
-        
+
   <link name="l_decor_three">
     <visual>
       <origin xyz="0.27 0.6 0.475"/>

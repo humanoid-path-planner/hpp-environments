@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="ground"> 
+<robot name="ground">
   <link name="ground_base">
     <visual>
       <geometry>
