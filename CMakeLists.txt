@@ -42,11 +42,7 @@ SET(TEXTURE_FILES
 )
 
 IF(NOT INSTALL_PYTHON_INTERFACE_ONLY)
-  ADD_PROJECT_DEPENDENCY(example-robot-data REQUIRED)
-  if(${example-robot-data_VERSION} VERSION_LESS 3.9.1)
-    message(FATAL_ERROR
-      "example-robot-data version (${example-robot-data_VERSION}) is too old. Please update to 3.9.1 or newer")
-  endif()
+  ADD_PROJECT_DEPENDENCY(example-robot-data 3.9.1 REQUIRED)
 
   INSTALL(DIRECTORY urdf
     DESTINATION "share/${ROS_PROJECT_NAME}")
