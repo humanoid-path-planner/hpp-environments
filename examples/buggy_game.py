@@ -1,24 +1,23 @@
 import math
 import random
 import sys
-from threading import Thread, Lock
 import time
+from threading import Lock, Thread
 
+from gepetto.corbaserver import Client as ViewerClient
+from hpp.corbaserver import ProblemSolver
+from hpp.gepetto import ViewerFactory
+from PythonQt import QtCore
 from PythonQt.QtGui import (
-    mainWindow,
     QDockWidget,
     QHBoxLayout,
     QLabel,
     QPushButton,
     QWidget,
+    mainWindow,
 )
-from PythonQt import QtCore
 
-from gepetto.corbaserver import Client as ViewerClient
-from hpp.corbaserver import ProblemSolver
 from hpp.environments import Buggy
-from hpp.gepetto import ViewerFactory
-
 
 lockDisplay = Lock()
 lockProblem = Lock()
