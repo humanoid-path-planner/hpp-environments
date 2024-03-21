@@ -1,8 +1,9 @@
 from hpp.corbaserver import ProblemSolver
-from hpp.gepetto import PathPlayer  # noqa: F401
-from hpp.gepetto import ViewerFactory
-
 from hpp.environments import Buggy
+from hpp.gepetto import (
+    PathPlayer,  # noqa: F401
+    ViewerFactory,
+)
 
 robot = Buggy("buggy")
 robot.setJointBounds("root_joint", [-5, 16, -4.5, 4.5, -1.01, 1.01, -1.01, 1.01])

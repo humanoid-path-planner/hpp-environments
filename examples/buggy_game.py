@@ -6,6 +6,7 @@ from threading import Lock, Thread
 
 from gepetto.corbaserver import Client as ViewerClient
 from hpp.corbaserver import ProblemSolver
+from hpp.environments import Buggy
 from hpp.gepetto import ViewerFactory
 from PythonQt import QtCore
 from PythonQt.QtGui import (
@@ -16,8 +17,6 @@ from PythonQt.QtGui import (
     QWidget,
     mainWindow,
 )
-
-from hpp.environments import Buggy
 
 lockDisplay = Lock()
 lockProblem = Lock()
@@ -248,7 +247,7 @@ class GameWidget(QDockWidget):
     lastPath_ = -1
 
     def __init__(self, mainWindow, iaRobot, playerRobot):
-        super(GameWidget, self).__init__("Buggy game", mainWindow)
+        super().__init__("Buggy game", mainWindow)
         self.player = PlayerCar(playerRobot)
         self.ia = IACar(iaRobot)
         self.createOGWidget()
