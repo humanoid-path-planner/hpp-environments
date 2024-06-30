@@ -1,7 +1,6 @@
 {
   lib,
   cmake,
-  example-robot-data,
   jrl-cmakemodules,
   python3Packages,
 }:
