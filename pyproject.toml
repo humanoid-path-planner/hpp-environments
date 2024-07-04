@@ -14,7 +14,7 @@ dependencies = [
 description = "Environments for the humanoid path planner platform."
 license = "BSD-2-Clause"
 name = "hpp-environments"
-version = "5.0.0"
+version = "5.1.0"
 
 [tool.ruff]
 extend-exclude = ["cmake"]
