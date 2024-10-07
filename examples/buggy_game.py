@@ -5,9 +5,6 @@ import time
 from threading import Lock, Thread
 
 from gepetto.corbaserver import Client as ViewerClient
-from hpp.corbaserver import ProblemSolver
-from hpp.environments import Buggy
-from hpp.gepetto import ViewerFactory
 from PythonQt import QtCore
 from PythonQt.QtGui import (
     QDockWidget,
@@ -17,6 +14,10 @@ from PythonQt.QtGui import (
     QWidget,
     mainWindow,
 )
+
+from hpp.corbaserver import ProblemSolver
+from hpp.environments import Buggy
+from hpp.gepetto import ViewerFactory
 
 lockDisplay = Lock()
 lockProblem = Lock()
