@@ -20,7 +20,7 @@
   <buildtool_depend>cmake</buildtool_depend>
 
   <build_depend>doxygen</build_depend>
-  
+
   <depend>example-robot-data</depend>
 
   <!-- The following tags are recommended by REP-136 -->
