@@ -77,7 +77,7 @@ if(NOT INSTALL_PYTHON_INTERFACE_ONLY)
   install(DIRECTORY meshes DESTINATION "share/${ROS_PROJECT_NAME}")
 
   install(FILES ${TEXTURE_FILES}
-          DESTINATION "share//${ROS_PROJECT_NAME}/texture")
+          DESTINATION "share/${ROS_PROJECT_NAME}/texture")
 
   install(FILES package.xml DESTINATION "share/${ROS_PROJECT_NAME}")
 
