@@ -66,7 +66,7 @@ if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
   install(DIRECTORY meshes DESTINATION "share/${ROS_PROJECT_NAME}")
 
   install(FILES ${TEXTURE_FILES}
-          DESTINATION "share//${ROS_PROJECT_NAME}/texture")
+          DESTINATION "share/${ROS_PROJECT_NAME}/texture")
 
   add_library(${PROJECT_NAME} INTERFACE)
   install(
