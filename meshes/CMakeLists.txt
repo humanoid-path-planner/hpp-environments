@@ -18,19 +18,26 @@ set(BUGGY
     buggy/scene.dae
     buggy/scene.stl
     buggy/wheel_frontleft.dae
-    buggy/wheel_frontright.dae)
+    buggy/wheel_frontright.dae
+)
 
-install(FILES ${BUGGY}
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/buggy)
+install(
+    FILES ${BUGGY}
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/buggy
+)
 
 set(UR_BENCHMARK_MESHES ur_benchmark/pokeball.dae)
 
-install(FILES ${UR_BENCHMARK_MESHES}
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/ur_benchmark)
+install(
+    FILES ${UR_BENCHMARK_MESHES}
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/ur_benchmark
+)
 
 set(HRP2_MESHES hrp2/floor.dae)
 
-install(FILES ${HRP2_MESHES}
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/hrp2)
+install(
+    FILES ${HRP2_MESHES}
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes/hrp2
+)
 
 install(DIRECTORY tests DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes)
