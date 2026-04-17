@@ -18,30 +18,38 @@ set(PROJECT_DESCRIPTION "Environments for the humanoid path planner platform.")
 string(REPLACE "-" "_" ROS_PROJECT_NAME ${PROJECT_NAME})
 
 if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
-  set(PROJECT_USE_CMAKE_EXPORT TRUE)
+    set(PROJECT_USE_CMAKE_EXPORT TRUE)
 endif(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
 
 # Check if the submodule cmake have been initialized
 set(JRL_CMAKE_MODULES "${CMAKE_CURRENT_LIST_DIR}/cmake")
 if(EXISTS "${JRL_CMAKE_MODULES}/base.cmake")
-  message(STATUS "JRL cmakemodules found in 'cmake/' git submodule")
+    message(STATUS "JRL cmakemodules found in 'cmake/' git submodule")
 else()
-  find_package(jrl-cmakemodules QUIET CONFIG)
-  if(jrl-cmakemodules_FOUND)
-    get_property(
-      JRL_CMAKE_MODULES
-      TARGET jrl-cmakemodules::jrl-cmakemodules
-      PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
-    message(STATUS "JRL cmakemodules found on system at ${JRL_CMAKE_MODULES}")
-  else()
-    message(STATUS "JRL cmakemodules not found. Let's fetch it.")
-    include(FetchContent)
-    FetchContent_Declare(
-      "jrl-cmakemodules"
-      GIT_REPOSITORY "https://github.com/jrl-umi3218/jrl-cmakemodules.git")
-    FetchContent_MakeAvailable("jrl-cmakemodules")
-    FetchContent_GetProperties("jrl-cmakemodules" SOURCE_DIR JRL_CMAKE_MODULES)
-  endif()
+    find_package(jrl-cmakemodules QUIET CONFIG)
+    if(jrl-cmakemodules_FOUND)
+        get_property(
+            JRL_CMAKE_MODULES
+            TARGET jrl-cmakemodules::jrl-cmakemodules
+            PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+        )
+        message(
+            STATUS
+            "JRL cmakemodules found on system at ${JRL_CMAKE_MODULES}"
+        )
+    else()
+        message(STATUS "JRL cmakemodules not found. Let's fetch it.")
+        include(FetchContent)
+        FetchContent_Declare(
+            "jrl-cmakemodules"
+            GIT_REPOSITORY "https://github.com/jrl-umi3218/jrl-cmakemodules.git"
+        )
+        FetchContent_MakeAvailable("jrl-cmakemodules")
+        FetchContent_GetProperties(
+            "jrl-cmakemodules"
+            SOURCE_DIR JRL_CMAKE_MODULES
+        )
+    endif()
 endif()
 
 include("${JRL_CMAKE_MODULES}/hpp.cmake")
@@ -51,30 +59,33 @@ compute_project_args(PROJECT_ARGS LANGUAGES CXX)
 project(${PROJECT_NAME} ${PROJECT_ARGS})
 
 if(BUILD_PYTHON_INTERFACE)
-  findpython(REQUIRED)
+    findpython(REQUIRED)
 endif(BUILD_PYTHON_INTERFACE)
 
 set(TEXTURE_FILES texture/logo_romeo.jpg)
 
 if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
-  add_project_dependency(example-robot-data 3.9.1 REQUIRED)
+    add_project_dependency(example-robot-data 3.9.1 REQUIRED)
 
-  install(DIRECTORY urdf DESTINATION "share/${ROS_PROJECT_NAME}")
+    install(DIRECTORY urdf DESTINATION "share/${ROS_PROJECT_NAME}")
 
-  install(DIRECTORY srdf DESTINATION "share/${ROS_PROJECT_NAME}")
+    install(DIRECTORY srdf DESTINATION "share/${ROS_PROJECT_NAME}")
 
-  install(DIRECTORY meshes DESTINATION "share/${ROS_PROJECT_NAME}")
+    install(DIRECTORY meshes DESTINATION "share/${ROS_PROJECT_NAME}")
 
-  install(FILES ${TEXTURE_FILES}
-          DESTINATION "share//${ROS_PROJECT_NAME}/texture")
+    install(
+        FILES ${TEXTURE_FILES}
+        DESTINATION "share/${ROS_PROJECT_NAME}/texture"
+    )
 
-  add_library(${PROJECT_NAME} INTERFACE)
-  install(
-    TARGETS ${PROJECT_NAME}
-    EXPORT ${TARGETS_EXPORT_NAME}
-    DESTINATION lib)
+    add_library(${PROJECT_NAME} INTERFACE)
+    install(
+        TARGETS ${PROJECT_NAME}
+        EXPORT ${TARGETS_EXPORT_NAME}
+        DESTINATION lib
+    )
 endif(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
 
 if(BUILD_PYTHON_INTERFACE)
-  add_subdirectory(src)
+    add_subdirectory(src)
 endif(BUILD_PYTHON_INTERFACE)
