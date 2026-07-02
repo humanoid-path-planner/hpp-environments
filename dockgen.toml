@@ -1,0 +1,7 @@
+[example-robot-data]
+configure_args = ["-DBUILD_PYTHON_INTERFACE=OFF"]
+url = "github:gepetto"
+
+[hpp-environments]
+src_deps = ["example-robot-data"]
+url = "."
