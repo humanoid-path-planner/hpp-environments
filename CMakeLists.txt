@@ -47,6 +47,7 @@ compute_project_args(PROJECT_ARGS LANGUAGES CXX)
 project(${PROJECT_NAME} ${PROJECT_ARGS})
 
 if(BUILD_PYTHON_INTERFACE)
+    set(PYTHON_COMPONENTS Interpreter)
     findpython(REQUIRED)
 endif(BUILD_PYTHON_INTERFACE)
 
