@@ -23,9 +23,6 @@ upstream = "https://github.com/humanoid-path-planner/hpp-environments"
 [tool.cmeel]
 has-binaries = false
 
-[tool.ruff]
-extend-exclude = ["cmake"]
-
 [tool.ruff.lint]
 extend-select = ["I", "NPY", "RUF", "UP", "W"]
 
