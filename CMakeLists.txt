@@ -21,35 +21,23 @@ if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
     set(PROJECT_USE_CMAKE_EXPORT TRUE)
 endif(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
 
-# Check if the submodule cmake have been initialized
-set(JRL_CMAKE_MODULES "${CMAKE_CURRENT_LIST_DIR}/cmake")
-if(EXISTS "${JRL_CMAKE_MODULES}/base.cmake")
-    message(STATUS "JRL cmakemodules found in 'cmake/' git submodule")
+find_package(jrl-cmakemodules QUIET CONFIG)
+if(jrl-cmakemodules_FOUND)
+    get_property(
+        JRL_CMAKE_MODULES
+        TARGET jrl-cmakemodules::jrl-cmakemodules
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    message(STATUS "JRL cmakemodules found on system at ${JRL_CMAKE_MODULES}")
 else()
-    find_package(jrl-cmakemodules QUIET CONFIG)
-    if(jrl-cmakemodules_FOUND)
-        get_property(
-            JRL_CMAKE_MODULES
-            TARGET jrl-cmakemodules::jrl-cmakemodules
-            PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-        )
-        message(
-            STATUS
-            "JRL cmakemodules found on system at ${JRL_CMAKE_MODULES}"
-        )
-    else()
-        message(STATUS "JRL cmakemodules not found. Let's fetch it.")
-        include(FetchContent)
-        FetchContent_Declare(
-            "jrl-cmakemodules"
-            GIT_REPOSITORY "https://github.com/jrl-umi3218/jrl-cmakemodules.git"
-        )
-        FetchContent_MakeAvailable("jrl-cmakemodules")
-        FetchContent_GetProperties(
-            "jrl-cmakemodules"
-            SOURCE_DIR JRL_CMAKE_MODULES
-        )
-    endif()
+    message(STATUS "JRL cmakemodules not found. Let's fetch it.")
+    include(FetchContent)
+    FetchContent_Declare(
+        "jrl-cmakemodules"
+        GIT_REPOSITORY "https://github.com/jrl-umi3218/jrl-cmakemodules.git"
+    )
+    FetchContent_MakeAvailable("jrl-cmakemodules")
+    FetchContent_GetProperties("jrl-cmakemodules" SOURCE_DIR JRL_CMAKE_MODULES)
 endif()
 
 include("${JRL_CMAKE_MODULES}/hpp.cmake")
@@ -59,6 +47,7 @@ compute_project_args(PROJECT_ARGS LANGUAGES CXX)
 project(${PROJECT_NAME} ${PROJECT_ARGS})
 
 if(BUILD_PYTHON_INTERFACE)
+    set(PYTHON_COMPONENTS Interpreter)
     findpython(REQUIRED)
 endif(BUILD_PYTHON_INTERFACE)
 
