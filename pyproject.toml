@@ -13,7 +13,7 @@ description = "Environments for the humanoid path planner platform."
 license = "BSD-2-Clause"
 name = "hpp-environments"
 requires-python = ">= 3.10"
-version = "9.0.0"
+version = "9.0.2"
 
 [project.urls]
 homepage = "https://github.com/cmake-wheel/hpp-environments"
