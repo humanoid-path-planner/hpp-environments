@@ -54,7 +54,16 @@ endif(BUILD_PYTHON_INTERFACE)
 set(TEXTURE_FILES texture/logo_romeo.jpg)
 
 if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
-    add_project_dependency(example-robot-data 3.9.1 REQUIRED)
+    add_project_dependency(example-robot-data QUIET)
+    if(NOT TARGET example-robot-data::example-robot-data)
+        message(STATUS "example-robot-data not found. Let's fetch it.")
+        include(FetchContent)
+        FetchContent_Declare(
+            "example-robot-data"
+            GIT_REPOSITORY "https://github.com/gepetto/example-robot-data"
+        )
+        FetchContent_MakeAvailable("example-robot-data")
+    endif()
 
     install(DIRECTORY urdf DESTINATION "share/${ROS_PROJECT_NAME}")
 
