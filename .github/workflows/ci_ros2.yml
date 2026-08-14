@@ -12,7 +12,7 @@ jobs:
         env:
           - {ROS_DISTRO: rolling}
     env:
-      UPSTREAM_WORKSPACE: github:gepetto/example-robot-data#devel
+      ROSDEP_SKIP_KEYS: example_robot_data
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
