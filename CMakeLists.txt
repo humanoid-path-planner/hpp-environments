@@ -60,7 +60,8 @@ if(NOT BUILD_STANDALONE_PYTHON_INTERFACE)
         include(FetchContent)
         FetchContent_Declare(
             "example-robot-data"
-            GIT_REPOSITORY "https://github.com/gepetto/example-robot-data"
+            URL
+                "https://github.com/Gepetto/example-robot-data/archive/refs/heads/devel.zip"
         )
         FetchContent_MakeAvailable("example-robot-data")
     endif()
