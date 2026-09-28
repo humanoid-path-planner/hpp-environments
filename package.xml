@@ -12,7 +12,7 @@
   <url type="repository">https://github.com/humanoid-path-planner/hpp-environments</url>
   <url type="bugtracker">https://github.com/humanoid-path-planner/hpp-environments/issues</url>
 
-  <depend>example_robot_data</depend>
+  <depend>example_robot_descriptions</depend>
   <depend>python3</depend>
 
   <buildtool_depend>cmake</buildtool_depend>
